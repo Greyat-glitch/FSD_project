@@ -131,3 +131,13 @@ function clearErrors() {
   errorElements.forEach(el => el.textContent = '');
   document.getElementById('form-feedback').textContent = '';
 }
+
+//Browse events page logic from the evnts html
+function initBrowseEventsPage() {
+  const container = document.getElementById('events-container');
+  const filterSelect = document.getElementById('category-filter');
+
+  // Render initial list
+  renderEvents();
+
+ 
