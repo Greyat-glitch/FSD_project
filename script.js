@@ -41,3 +41,19 @@ function getInitialDefaultEvents() {
 function initHomePage() {
   const statsContainer = document.getElementById('stats-container');
   const events = getStoredEvents();
+
+  // Calculate statistics
+  const totalEvents = events.length;
+  const categories = [...new Set(events.map(e => e.category))].length;
+
+  statsContainer.innerHTML = `
+    <div class="stat-card">
+      <span>${totalEvents}</span>
+      <p>Total Events</p>
+    </div>
+    <div class="stat-card">
+      <span>${categories}</span>
+      <p>Active Categories</p>
+    </div>
+  `;
+}
