@@ -33,6 +33,7 @@ header {
   background-image: url('./images/hehehe.jpg');
   background-size: cover;
   background-position: center;
+  height: 500px;
 }
 header h1 {
   font-size: 2rem;
