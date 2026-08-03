@@ -1,15 +1,15 @@
 // Key used for storing our events array in localStorage
 const STORAGE_KEY = 'community_hub_events';
 
-//helper function to get events from localStorage.
-//returns an array of events objects
-function getStoredEvents() { //from local storage
+ //Helper function to retrieve events from LocalStorage.
+ // Returns an array of event objects.from local storage
+function getStoredEvents() {
   const eventsData = localStorage.getItem(STORAGE_KEY);
   return eventsData ? JSON.parse(eventsData) : getInitialDefaultEvents();
 }
 
-// Helper function to save an array of events to LocalStorage.
-function saveEvents(events) { //to local storage
+ //Helper function to save an array of events to LocalStorage.
+function saveEvents(events) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
 }
 
@@ -18,24 +18,38 @@ function getInitialDefaultEvents() {
   const defaults = [
     {
       id: '1',
-      title: 'Neighborhood Cleanup',
+      title: 'Neighborhood Park Cleanup',
       category: 'Volunteer',
       date: '2026-08-15',
-      location: 'Obama Estate, Njiru, Kanairo',
-      description: 'Join us for a morning of cleaning up trash and planting new flowers in the community Estate.'
+      location: 'Central Park Main Entrance',
+      description: 'Join us for a morning of cleaning up trash and planting new flowers in the community park.'
     },
     {
       id: '2',
-      title: 'Community Soccer Match with prizes LOL',
+      title: 'Community Soccer Match',
       category: 'Sports',
       date: '2026-08-20',
-      location: 'Konambaya Pitch, Njiru, Cairobi',
-      description: 'Friendly weekend soccer match open to all age groups and skill levels. Equipment provided. Prizes to be won!LOL'
+      location: 'Town Recreation Field',
+      description: 'Friendly weekend soccer match open to all age groups and skill levels. Equipment provided.'
     }
   ];
   saveEvents(defaults);
   return defaults;
 }
+
+   // Page-Specific Logic Execution
+document.addEventListener('DOMContentLoaded', () => {
+  // Check which page the user is currently visiting
+  const path = window.location.pathname;
+
+  if (document.getElementById('event-form')) {
+    initAddEventPage();
+  } else if (document.getElementById('events-container')) {
+    initBrowseEventsPage();
+  } else if (document.getElementById('stats-container')) {
+    initHomePage();
+  }
+});
 
 // home page loging for index.html
 function initHomePage() {
@@ -58,16 +72,19 @@ function initHomePage() {
   `;
 }
 
-//Next step is to add add a page logic to the event form in add-events.html, we will handle the form submission and save the new event to localStorage.
+ // Add Event Form Page Logic (add-event.html)
+ //Next step is to add add a page logic to the event form in add-events.html, we will handle the form submission and save the new event to localStorage.
 function initAddEventPage() {
   const form = document.getElementById('event-form');
-form.addEventListener('submit', (event) => {
+  const feedback = document.getElementById('form-feedback');
+
+  form.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent page reload
 
-// Reset previous error messages
+    // Reset previous error messages
     clearErrors();
 
-// Grab field values
+    // Grab field values
     const title = document.getElementById('event-title').value.trim();
     const category = document.getElementById('event-category').value;
     const date = document.getElementById('event-date').value;
@@ -76,6 +93,7 @@ form.addEventListener('submit', (event) => {
 
     // Form Validation
     let isValid = true;
+
     if (!title) {
       showError('title-error', 'Please enter an event title.');
       isValid = false;
@@ -126,14 +144,22 @@ form.addEventListener('submit', (event) => {
   });
 }
 
+function showError(elementId, message) {
+  const errorElement = document.getElementById(elementId);
+  if (errorElement) {
+    errorElement.textContent = message;
+  }
+}
+
 function clearErrors() {
   const errorElements = document.querySelectorAll('.error-msg');
   errorElements.forEach(el => el.textContent = '');
   document.getElementById('form-feedback').textContent = '';
 }
 
-//Browse events page logic from the evnts html
-function initBrowseEventsPage() {
+
+   // Browse Events Page Logic (events.html)
+ function initBrowseEventsPage() {
   const container = document.getElementById('events-container');
   const filterSelect = document.getElementById('category-filter');
 
@@ -178,7 +204,6 @@ function initBrowseEventsPage() {
       container.appendChild(card);
     });
 
-
     // Event listener for Delete buttons
     const deleteButtons = container.querySelectorAll('.delete-btn');
     deleteButtons.forEach(btn => {
@@ -196,4 +221,4 @@ function initBrowseEventsPage() {
     renderEvents(filterSelect.value); // Re-render updated list
   }
 }
- 
+

@@ -145,13 +145,13 @@ button:hover {
   margin-bottom: 1rem;
 }
 .delete-btn {
-  background-color: rgb(255, 22, 22);
+  background-color: rgb(184, 35, 35);
   align-self: flex-start;
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
 }
 .delete-btn:hover {
-  background-color: #c0392b;
+  background-color: #ff1900;
 }
 #stats-container {
   display: flex;
