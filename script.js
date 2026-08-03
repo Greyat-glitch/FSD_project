@@ -98,3 +98,18 @@ form.addEventListener('submit', (event) => {
     }
 
     if (!isValid) return;
+
+    // Create new event object
+    const newEvent = {
+      id: Date.now().toString(),
+      title,
+      category,
+      date,
+      location,
+      description
+    };
+
+    // Save to LocalStorage
+    const events = getStoredEvents();
+    events.push(newEvent);
+    saveEvents(events);
