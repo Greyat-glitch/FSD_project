@@ -64,5 +64,12 @@ function initAddEventPage() {
 form.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent page reload
 
-    // Reset previous error messages
+// Reset previous error messages
     clearErrors();
+
+// Grab field values
+    const title = document.getElementById('event-title').value.trim();
+    const category = document.getElementById('event-category').value;
+    const date = document.getElementById('event-date').value;
+    const location = document.getElementById('event-location').value.trim();
+    const description = document.getElementById('event-desc').value.trim();
