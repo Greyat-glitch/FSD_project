@@ -57,3 +57,9 @@ function initHomePage() {
     </div>
   `;
 }
+
+//Next step is to add add a page logic to the event form in add-events.html, we will handle the form submission and save the new event to localStorage.
+function initAddEventPage() {
+  const form = document.getElementById('event-form');
+}
+
