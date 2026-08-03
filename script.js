@@ -36,3 +36,8 @@ function getInitialDefaultEvents() {
   saveEvents(defaults);
   return defaults;
 }
+
+// home page loging for index.html
+function initHomePage() {
+  const statsContainer = document.getElementById('stats-container');
+  const events = getStoredEvents();
