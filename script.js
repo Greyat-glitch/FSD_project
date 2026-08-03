@@ -125,3 +125,9 @@ form.addEventListener('submit', (event) => {
     }, 4000);
   });
 }
+
+function clearErrors() {
+  const errorElements = document.querySelectorAll('.error-msg');
+  errorElements.forEach(el => el.textContent = '');
+  document.getElementById('form-feedback').textContent = '';
+}
