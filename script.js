@@ -73,3 +73,28 @@ form.addEventListener('submit', (event) => {
     const date = document.getElementById('event-date').value;
     const location = document.getElementById('event-location').value.trim();
     const description = document.getElementById('event-desc').value.trim();
+
+    // Form Validation
+    let isValid = true;
+    if (!title) {
+      showError('title-error', 'Please enter an event title.');
+      isValid = false;
+    }
+    if (!category) {
+      showError('category-error', 'Please select a category.');
+      isValid = false;
+    }
+    if (!date) {
+      showError('date-error', 'Please pick a date.');
+      isValid = false;
+    }
+    if (!location) {
+      showError('location-error', 'Please enter a location.');
+      isValid = false;
+    }
+    if (!description) {
+      showError('desc-error', 'Please provide a description.');
+      isValid = false;
+    }
+
+    if (!isValid) return;
