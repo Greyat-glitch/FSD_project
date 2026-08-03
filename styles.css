@@ -100,3 +100,13 @@ footer {
   font-size: 0.8rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+button {
+  background-color: rgb(17, 165, 17);
+  color: rgb(23, 18, 18);
+  border: solid 1px #72ade9;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
