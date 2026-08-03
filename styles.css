@@ -145,7 +145,7 @@ button:hover {
   margin-bottom: 1rem;
 }
 .delete-btn {
-  background-color: var(--accent-color);
+  background-color: rgb(255, 22, 22);
   align-self: flex-start;
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
@@ -171,5 +171,5 @@ button:hover {
   display: block;
   font-size: 2rem;
   font-weight: bold;
-  color: var(--secondary-color);
+  color: #f73f3f;
 }
