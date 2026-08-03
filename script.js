@@ -140,4 +140,42 @@ function initBrowseEventsPage() {
   // Render initial list
   renderEvents();
 
+  // Category Filter Listener
+  filterSelect.addEventListener('change', () => {
+    const selectedCategory = filterSelect.value;
+    renderEvents(selectedCategory);
+  });
+
+  // Render function with filtering & dynamic HTML creation
+  function renderEvents(filter = 'all') {
+    const events = getStoredEvents();
+    container.innerHTML = '';
+
+    const filteredEvents = filter === 'all' 
+      ? events 
+      : events.filter(e => e.category === filter);
+
+    if (filteredEvents.length === 0) {
+      container.innerHTML = '<p>No events found for this category.</p>';
+      return;
+    }
+
+    filteredEvents.forEach(evt => {
+      const card = document.createElement('div');
+      card.className = 'event-card';
+
+      card.innerHTML = `
+        <span class="category-tag">${evt.category}</span>
+        <h3>${evt.title}</h3>
+        <div class="event-details">
+          <p><strong>Date:</strong> ${evt.date}</p>
+          <p><strong>Location:</strong> ${evt.location}</p>
+        </div>
+        <p>${evt.description}</p>
+        <button class="delete-btn" data-id="${evt.id}">Delete</button>
+      `;
+
+      container.appendChild(card);
+    });
+
  
