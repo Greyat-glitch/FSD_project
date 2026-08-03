@@ -61,5 +61,8 @@ function initHomePage() {
 //Next step is to add add a page logic to the event form in add-events.html, we will handle the form submission and save the new event to localStorage.
 function initAddEventPage() {
   const form = document.getElementById('event-form');
-}
+form.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent page reload
 
+    // Reset previous error messages
+    clearErrors();
