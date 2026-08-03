@@ -178,4 +178,22 @@ function initBrowseEventsPage() {
       container.appendChild(card);
     });
 
+
+    // Event listener for Delete buttons
+    const deleteButtons = container.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idToDelete = e.target.getAttribute('data-id');
+        deleteEvent(idToDelete);
+      });
+    });
+  }
+
+  function deleteEvent(id) {
+    let events = getStoredEvents();
+    events = events.filter(e => e.id !== id);
+    saveEvents(events);
+    renderEvents(filterSelect.value); // Re-render updated list
+  }
+}
  
