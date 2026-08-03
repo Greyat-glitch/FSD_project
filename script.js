@@ -113,3 +113,15 @@ form.addEventListener('submit', (event) => {
     const events = getStoredEvents();
     events.push(newEvent);
     saveEvents(events);
+
+    // Provide success feedback and reset form
+    feedback.style.color = '#27ae60';
+    feedback.textContent = 'Event successfully created! You can now view it in Browse Events.';
+    form.reset();
+
+    // Clear feedback message after 4 seconds
+    setTimeout(() => {
+      feedback.textContent = '';
+    }, 4000);
+  });
+}
